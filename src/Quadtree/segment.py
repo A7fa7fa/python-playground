@@ -1,7 +1,7 @@
 from typing import List
 from queryMode import QueryMode
 
-from Quadtree.point import Point
+from point import Point
 
 class Segment():
 

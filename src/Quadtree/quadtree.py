@@ -1,6 +1,6 @@
 from typing import Any, List
 from queryMode import QueryMode
-from Quadtree.point import Point
+from point import Point
 from segment import Segment
 
 class Quadtree():
