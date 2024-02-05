@@ -10,7 +10,7 @@ class Quadtree():
         self.max = Point(max(minX, maxX), max(minY, maxY),)
         self.center = Point((self.max.x + self.min.x) / 2, (self.max.y + self.min.y) / 2)
 
-        self.data = Segment(self.center.x, self.center.y, self.width / 2, self.height / 2)
+        self.data = Segment(Point(self.center.x, self.center.y), self.width / 2, self.height / 2)
         self.allDataRef: List[Point] = []
 
     @property

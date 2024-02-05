@@ -1,4 +1,3 @@
-
 from abc import ABC, abstractmethod
 from typing import Dict, List, Set, Tuple
 from rule import Rule

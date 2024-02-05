@@ -4,9 +4,10 @@ from queryMode import QueryMode
 from point import Point
 
 class Segment():
+    capacity = 4
 
-    def __init__(self, centerX: float, centerY: float, halfWidth: float, halfHeight: float) -> None:
-        self.center = Point(centerX, centerY)
+    def __init__(self, center: Point, halfWidth: float, halfHeight: float) -> None:
+        self.center = center
         self.halfWidth = halfWidth
         self.halfHeight = halfHeight
 
@@ -15,14 +16,16 @@ class Segment():
         self.northWest: Segment | None = None
         self.northEast: Segment | None = None
 
-        self.capacity = 4
         self.data: List[Point] = []
 
     def insert(self, pos: Point) -> bool:
         if not self.__isInside(pos.x, pos.y):
             return False
 
-        hasChildren = self.southEast is not None and self.southWest is not None and self.northEast is not None and self.northWest is not None
+        hasChildren = (self.southEast is not None
+                       and self.southWest is not None
+                       and self.northEast is not None
+                       and self.northWest is not None)
         if hasChildren:
             return self.__insertIntoChildren(pos)
 
@@ -78,20 +81,20 @@ class Segment():
     def __createChilds(self) -> None:
         childSegmentWidth = self.halfWidth / 2
         childSegmentHeight = self.halfHeight / 2
-        self.southWest = Segment(self.center.x - childSegmentWidth,
-                                self.center.y - childSegmentHeight,
+        self.southWest = Segment(Point(self.center.x - childSegmentWidth,
+                                self.center.y - childSegmentHeight),
                                 childSegmentWidth,
                                 childSegmentHeight)
-        self.southEast = Segment(self.center.x + childSegmentWidth,
-                                self.center.y - childSegmentHeight,
+        self.southEast = Segment(Point(self.center.x + childSegmentWidth,
+                                self.center.y - childSegmentHeight),
                                 childSegmentWidth,
                                 childSegmentHeight)
-        self.northWest = Segment(self.center.x - childSegmentWidth,
-                                self.center.y + childSegmentHeight,
+        self.northWest = Segment(Point(self.center.x - childSegmentWidth,
+                                self.center.y + childSegmentHeight),
                                 childSegmentWidth,
                                 childSegmentHeight)
-        self.northEast = Segment(self.center.x + childSegmentWidth,
-                                self.center.y + childSegmentHeight,
+        self.northEast = Segment(Point(self.center.x + childSegmentWidth,
+                                self.center.y + childSegmentHeight),
                                 childSegmentWidth,
                                 childSegmentHeight)
 
@@ -113,9 +116,10 @@ class Segment():
         foundPos: List[Point] = []
         for p in self.data:
             insideRectangle = (p.x >= (x - (r))
-            and p.x <= (x + (r))
-            and p.y >= (y - (r))
-            and p.y <= (y + (r)))
+                and p.x <= (x + (r))
+                and p.y >= (y - (r))
+                and p.y <= (y + (r)))
+
             if  insideRectangle:
                 foundPos.append(p)
 
