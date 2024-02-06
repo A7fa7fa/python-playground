@@ -1,4 +1,9 @@
 {
     "python.analysis.typeCheckingMode": "strict",
-    "pylint.args": ["--load-plugins", "pylint_pydantic"]
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
 }

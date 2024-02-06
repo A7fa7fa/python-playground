@@ -1,5 +1,6 @@
 from typing import Set, Tuple
 
+
 class Rule():
 
     def __init__(self, symbol: str, targetLiteral: str, ruleDeter: str = "%") -> None:

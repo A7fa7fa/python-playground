@@ -3,6 +3,7 @@ from typing import Any, List, Tuple
 
 # TODO generic type
 
+
 class HashTable:
     '''This is a Custome Hashtable.
     Stores key value pairs as tupple in array by hashing value to index.

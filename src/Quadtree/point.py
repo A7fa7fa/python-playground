@@ -1,5 +1,6 @@
 from typing import Any
 
+
 class Point():
     def __init__(self, x: float, y: float, userData: Any | None = None) -> None:
         self.x = x

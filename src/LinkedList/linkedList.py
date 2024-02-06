@@ -1,5 +1,6 @@
 from node import Node
 
+
 class LinkedList():
 
     def __init__(self) -> None:
@@ -51,8 +52,8 @@ class LinkedList():
             self.head = None
             self.tail = None
 
-        pre: Node  = self.head # type: ignore
-        temp: Node  = self.head # type: ignore
+        pre: Node = self.head  # type: ignore
+        temp: Node = self.head  # type: ignore
         # as long as next of temp is not none end is not reached
         # pre is set to temp and temp to next of temp so pre is always node in before temp
         while temp.next is not None:
@@ -65,7 +66,7 @@ class LinkedList():
         self.tail.next = None
         return temp
 
-    def prepend(self, value: int)  -> Node:
+    def prepend(self, value: int) -> Node:
 
         newNode = Node(value)
 
@@ -158,7 +159,6 @@ class LinkedList():
         temp.next = prev
         # return next node
         return temp.next
-
 
     def reverse(self) -> None:
         # list is empty so no reversal needed

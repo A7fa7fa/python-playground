@@ -9,6 +9,7 @@ class RuleValidatorAbc(ABC):
     def validate(self, rules: Dict[str, Rule], newRule: Rule) -> bool:
         raise NotImplementedError
 
+
 class RuleValidatorIncludeOtherRules(RuleValidatorAbc):
 
     def validate(self, rules: Dict[str, Rule], newRule: Rule) -> bool:
@@ -21,10 +22,12 @@ class RuleValidatorIncludeOtherRules(RuleValidatorAbc):
                 return False
         return True
 
+
 class RuleValidatorIncludeDeterm(RuleValidatorAbc):
 
     def validate(self, rules: Dict[str, Rule], newRule: Rule) -> bool:
         return newRule.ruleDeter not in newRule.getSymbol()[1:]
+
 
 class RuleValidatorDefault(RuleValidatorAbc):
 
@@ -34,7 +37,8 @@ class RuleValidatorDefault(RuleValidatorAbc):
             if symbol in seen:
                 return False
             seen.add(symbol)
-            targets = rules.get(symbol, newRule).getTargetSymbols(registedSymbols)
+            targets = rules.get(
+                symbol, newRule).getTargetSymbols(registedSymbols)
             return self.__dfs(registedSymbols, list(targets), seen, rules, newRule)
         return True
 

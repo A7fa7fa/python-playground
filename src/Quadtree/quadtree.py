@@ -3,14 +3,17 @@ from queryMode import QueryMode
 from point import Point
 from segment import Segment
 
+
 class Quadtree():
 
     def __init__(self, minX: float, minY: float, maxX: float, maxY: float) -> None:
         self.min = Point(min(minX, maxX), min(minY, maxY),)
         self.max = Point(max(minX, maxX), max(minY, maxY),)
-        self.center = Point((self.max.x + self.min.x) / 2, (self.max.y + self.min.y) / 2)
+        self.center = Point((self.max.x + self.min.x) / 2,
+                            (self.max.y + self.min.y) / 2)
 
-        self.data = Segment(Point(self.center.x, self.center.y), self.width / 2, self.height / 2)
+        self.data = Segment(Point(self.center.x, self.center.y),
+                            self.width / 2, self.height / 2)
         self.allDataRef: List[Point] = []
 
     @property
@@ -29,10 +32,10 @@ class Quadtree():
         self.allDataRef.append(pos)
 
     def queryRactangle(self, centerX: float, centerY: float, radius: float) -> List[Point]:
-        return self.data.query(centerX, centerY, radius, mode = QueryMode.rectangle)
+        return self.data.query(centerX, centerY, radius, mode=QueryMode.rectangle)
 
     def queryCircle(self, centerX: float, centerY: float, radius: float) -> List[Point]:
-        return self.data.query(centerX, centerY, radius, mode =  QueryMode.circle)
+        return self.data.query(centerX, centerY, radius, mode=QueryMode.circle)
 
     def getAll(self) -> List[Point]:
         return self.allDataRef

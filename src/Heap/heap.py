@@ -45,7 +45,6 @@ class MaxHeap():
             self.__swap(index, iLargest)
             self.__floatDown(iLargest)
 
-
     def __getIndexLeftChild(self, index: int) -> int:
         return index * 2
 

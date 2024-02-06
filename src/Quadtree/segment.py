@@ -3,6 +3,7 @@ from queryMode import QueryMode
 
 from point import Point
 
+
 class Segment():
     capacity = 4
 
@@ -37,24 +38,24 @@ class Segment():
         self.__createChilds()
         return self.__insertIntoChildren(pos)
 
-
     def query(self, x: float, y: float, r: float, mode: QueryMode = QueryMode.rectangle) -> List[Point]:
         """returns list of intersected Position"""
         if mode == QueryMode.circle:
-            raise NotImplementedError("Mode query by circle is not implemented")
+            raise NotImplementedError(
+                "Mode query by circle is not implemented")
 
         foundPos: List[Point] = []
         if not self.__intersectsRectangle(x, y, r):
             return foundPos
 
         if self.southWest:
-            foundPos += self.southWest.query(x, y, r, mode = mode)
+            foundPos += self.southWest.query(x, y, r, mode=mode)
         if self.southEast:
-            foundPos += self.southEast.query(x, y, r, mode = mode)
+            foundPos += self.southEast.query(x, y, r, mode=mode)
         if self.northWest:
-            foundPos += self.northWest.query(x, y, r, mode = mode)
+            foundPos += self.northWest.query(x, y, r, mode=mode)
         if self.northEast:
-            foundPos += self.northEast.query(x, y, r, mode = mode)
+            foundPos += self.northEast.query(x, y, r, mode=mode)
 
         foundPos += self.__pointInsideRectangle(x, y, r)
 
@@ -71,41 +72,40 @@ class Segment():
             return True
         raise ValueError("Can not insert in any Segment")
 
-
     def __isInside(self, x: float, y: float) -> bool:
         """favours East Segment if x position of point is on x boundary.\n
         favours south Segment if y position of point is on y boundary"""
         return (x >= (self.center.x - (self.halfWidth)) <= x < (self.center.x + (self.halfWidth))
-            and y >= (self.center.y - (self.halfHeight)) <= y < (self.center.y + (self.halfHeight)))
+                and y >= (self.center.y - (self.halfHeight)) <= y < (self.center.y + (self.halfHeight)))
 
     def __createChilds(self) -> None:
         childSegmentWidth = self.halfWidth / 2
         childSegmentHeight = self.halfHeight / 2
         self.southWest = Segment(Point(self.center.x - childSegmentWidth,
-                                self.center.y - childSegmentHeight),
-                                childSegmentWidth,
-                                childSegmentHeight)
+                                       self.center.y - childSegmentHeight),
+                                 childSegmentWidth,
+                                 childSegmentHeight)
         self.southEast = Segment(Point(self.center.x + childSegmentWidth,
-                                self.center.y - childSegmentHeight),
-                                childSegmentWidth,
-                                childSegmentHeight)
+                                       self.center.y - childSegmentHeight),
+                                 childSegmentWidth,
+                                 childSegmentHeight)
         self.northWest = Segment(Point(self.center.x - childSegmentWidth,
-                                self.center.y + childSegmentHeight),
-                                childSegmentWidth,
-                                childSegmentHeight)
+                                       self.center.y + childSegmentHeight),
+                                 childSegmentWidth,
+                                 childSegmentHeight)
         self.northEast = Segment(Point(self.center.x + childSegmentWidth,
-                                self.center.y + childSegmentHeight),
-                                childSegmentWidth,
-                                childSegmentHeight)
+                                       self.center.y + childSegmentHeight),
+                                 childSegmentWidth,
+                                 childSegmentHeight)
 
     def __intersectsRectangle(self, x: float, y: float, r: float) -> bool:
         if self.__isInside(x, y):
             return True
 
         isRecOutsideOfSegment = ((self.center.x + self.halfWidth <= x - r)
-                                or (self.center.x  - self.halfWidth >= x + r)
-                                or (self.center.y + self.halfHeight <= y - r)
-                                or self.center.y - self.halfHeight >= y + r)
+                                 or (self.center.x - self.halfWidth >= x + r)
+                                 or (self.center.y + self.halfHeight <= y - r)
+                                 or self.center.y - self.halfHeight >= y + r)
         if isRecOutsideOfSegment:
             return False
 
@@ -116,11 +116,11 @@ class Segment():
         foundPos: List[Point] = []
         for p in self.data:
             insideRectangle = (p.x >= (x - (r))
-                and p.x <= (x + (r))
-                and p.y >= (y - (r))
-                and p.y <= (y + (r)))
+                               and p.x <= (x + (r))
+                               and p.y >= (y - (r))
+                               and p.y <= (y + (r)))
 
-            if  insideRectangle:
+            if insideRectangle:
                 foundPos.append(p)
 
         return foundPos

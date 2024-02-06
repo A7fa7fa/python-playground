@@ -8,6 +8,7 @@ from p5.core.constants import CENTER
 from quadtree import Quadtree
 from Quadtree.point import Point
 
+
 def drawParticles(pos: List[Point], fill: bool = False) -> None:
     p5.stroke_weight(1)
     p5.stroke(100)
@@ -19,27 +20,30 @@ def drawParticles(pos: List[Point], fill: bool = False) -> None:
     for p in pos:
         p5.ellipse(p.x, p.y, 10, 10)
 
+
 def drawRect(x: float, y: float, r: float) -> None:
     p5.stroke_weight(1)
-    p5.stroke(0,0,255)
+    p5.stroke(0, 0, 255)
     p5.no_fill()
-    p5.rect(x, y, r * 2, r * 2, mode = CENTER)
+    p5.rect(x, y, r * 2, r * 2, mode=CENTER)
+
 
 mult = 1
 WIDTH = 1280 * mult
 HEIGHT = 640 * mult
 
-qtree = Quadtree(-WIDTH/ 2, -HEIGHT/ 2,  WIDTH/ 2, HEIGHT/ 2)
+qtree = Quadtree(-WIDTH / 2, -HEIGHT / 2,  WIDTH / 2, HEIGHT / 2)
 
 for i in range(50):
-    x = p5.random_uniform(-WIDTH/ 2, WIDTH / 2)
-    y = p5.random_uniform(-HEIGHT/ 2, HEIGHT /2)
+    x = p5.random_uniform(-WIDTH / 2, WIDTH / 2)
+    y = p5.random_uniform(-HEIGHT / 2, HEIGHT / 2)
     qtree.insert(x, y)
+
 
 def setup() -> None:
     p5.size(WIDTH, HEIGHT)
     p5.translate(WIDTH / 2, HEIGHT / 2)
-    p5.background(0,0,0)
+    p5.background(0, 0, 0)
     p5.no_fill()
     p5.stroke_weight(2)
     p5.stroke(255)
@@ -47,7 +51,7 @@ def setup() -> None:
 
 def draw() -> None:
     p5.translate(WIDTH / 2, HEIGHT / 2)
-    p5.background(0,0,0)
+    p5.background(0, 0, 0)
 
     allParticles = qtree.getAll()
 
@@ -68,7 +72,7 @@ def draw() -> None:
         # add 5 points to tree
         for _ in range(5):
             x = p5.random_uniform(-30, 30) - (WIDTH / 2)
-            y = p5.random_uniform(-30, 30)- (HEIGHT /2)
+            y = p5.random_uniform(-30, 30) - (HEIGHT / 2)
             qtree.insert(mouse_x + x, mouse_y + y)
 
 

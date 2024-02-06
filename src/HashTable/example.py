@@ -1,7 +1,7 @@
 from hashTable import HashTable
 
 
-hTable = HashTable(size = 10)
+hTable = HashTable(size=10)
 
 hTable.add("first entry", 1256)
 hTable["second entry"] = 222
