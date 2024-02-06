@@ -1,13 +1,33 @@
 {
-    "python.analysis.typeCheckingMode": "strict",
-    "[python]": {
-        "editor.defaultFormatter": "ms-python.autopep8",
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": true
-        }
+    // vs code basics
+    "window.zoomLevel": 0,
+    "editor.fontSize": 14,
+    "workbench.tree.indent": 20,
+    "editor.minimap.renderCharacters": true,
+    "editor.minimap.size": "fill",
+    "editor.cursorStyle": "line",
+    "editor.cursorBlinking": "blink",
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
     },
     "editor.formatOnSave": true,
+    // python
+    "python.analysis.typeCheckingMode": "strict",
     "python.analysis.autoImportCompletions": true,
     "python.analysis.importFormat": "absolute",
+    "[python]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.defaultFormatter": "ms-python.autopep8",
+        "editor.formatOnSave": true,
+    },
+    "pylint.args": [
+        "--rcfile=${workspaceFolder}/api/.pylintrc"
+    ],
+    // typescript
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    // JSON
     "json.format.enable": true
 }
