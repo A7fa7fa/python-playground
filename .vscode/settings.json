@@ -22,7 +22,7 @@
         "editor.formatOnSave": true,
     },
     "pylint.args": [
-        "--rcfile=${workspaceFolder}/api/.pylintrc"
+        "--rcfile=${workspaceFolder}/.pylintrc"
     ],
     // typescript
     "[typescriptreact]": {
